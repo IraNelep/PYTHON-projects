@@ -1,0 +1,89 @@
+# Bagels Game
+
+# import random
+#
+# NUM_DIGITS = 3
+# MAX_GUESSES = 10
+#
+#
+# def main():
+#     print('''Bagels, a deductive logic game.
+#     I am thinking of a {}-digit number with no repeated digits.
+#     Try to guess what it is. Here are some clues:
+#     When I say:     That means:
+#     Pico            One digit is correct but in the wrong position.
+#     Fermi           One digit is correct and in the right position.
+#     Bagels          No digit is correct.
+#     For example, if the secret number was 248 and your guess was 843, the Clues would be Fermi Pico.'''.format(
+#         NUM_DIGITS))
+#
+#     while True:  # The main loop of the game.
+#         # A variable that stores a secret number that
+#         secretNum = getSecretNum()  # the player must guess
+#         print('I have thought up a number.')
+#         print(f'You have {MAX_GUESSES} guesses to get it.')
+#
+#         numGuesses = 1
+#         while numGuesses <= MAX_GUESSES:
+#             guess = ''
+#             # We keep iterating until we get the right guess:
+#             while len(guess) != NUM_DIGITS or not guess.isdecimal():
+#                 print(f'Guess #{numGuesses}: ')
+#                 guess = input('=>')
+#
+#             clues = get_clues(guess, secretNum)
+#             print(clues)
+#             numGuesses += 1
+#
+#             if guess == secretNum:
+#                 break  # Correct, exit the cycle.
+#             if numGuesses > MAX_GUESSES:
+#                 print('You ran out of guesses.')
+#                 print(f'The answer was {secretNum}')
+#
+#         # Asking the player, if he wants to play again.
+#         print('Do you want to play again? (yes or no)')
+#         if not input('=>').lower().startswith('y'):
+#             break
+#     print('Thanks for playing!')
+#
+#
+# def getSecretNum():
+#     """Returns a string of NUM_DIGITS unique random digits."""
+#     numbers = list('0123456789')  # Creates a list of digits from 0 to 9.
+#     random.shuffle(numbers)  # Shuffle them randomly.
+#
+#     # We take the first NUM_DIGITS digits of the list for our secret number:
+#     secretNum = ' '
+#     for i in range(NUM_DIGITS):
+#         secretNum += str(numbers[i])
+#         return secretNum
+#
+#
+# def get_clues(guess, secretNum):
+#     """Returns a string with hints Pico, Fermi and Bagels
+#     for the pair received at the input from a guess and a secret number."""
+#     if guess == secretNum:
+#         return 'You got it!'
+#
+#     clues = []
+#
+#     for i in range(len(guess)):
+#         if guess[i] == secretNum:
+#             # Right number on a right place.
+#             clues.append('Fermi')
+#         elif guess[i] in secretNum:
+#             # Right number on a wrong place.
+#             clues.append('Pico')
+#     if len(clues) == 0:
+#         return 'Bagels'  # No right numbers
+#     else:
+#         # We sort the hints in alphabetical order so that their original order
+#         # does not give anything away.
+#         clues.sort()
+#         # We glue the list of hints into one string value.
+#         return ' '.join(clues)
+#
+# # If the program is not imported, but is launched, we launch it:
+# if __name__ == '__main__':
+#     main()
